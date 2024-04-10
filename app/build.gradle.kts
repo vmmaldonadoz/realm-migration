@@ -4,6 +4,7 @@ plugins {
 //    id("org.jetbrains.kotlin.kapt")
 //    id("realm-android")
     id("io.realm.kotlin") // VMMZ
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -41,6 +42,12 @@ android {
 dependencies {
 
     implementation("io.realm.kotlin:library-base:1.11.0")
+    val roomVersion = "2.6.1"
+
+    implementation("androidx.room:room-runtime:$roomVersion")
+    annotationProcessor("androidx.room:room-compiler:$roomVersion")
+
+    ksp("androidx.room:room-compiler:$roomVersion")
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
