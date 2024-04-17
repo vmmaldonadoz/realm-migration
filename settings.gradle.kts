@@ -12,7 +12,13 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
-rootProject.name = "RealmExample"
+rootProject.name = "RealmMigrationExample"
 include(":app")
+
+include(":databases:api")
+include(":databases:realm")
+include(":databases:room")
+
  

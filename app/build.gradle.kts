@@ -1,15 +1,11 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-//    id("org.jetbrains.kotlin.kapt")
-//    id("realm-android")
-    id("io.realm.kotlin") // VMMZ
-    id("com.google.devtools.ksp")
 }
 
 android {
     namespace = "com.vmmaldonadoz.realmexample"
-    compileSdk = 34
+    compileSdk = libs.versions.androidCompileSdkVersion.get().toInt()
 
     defaultConfig {
         applicationId = "com.vmmaldonadoz.realmexample"
@@ -21,6 +17,10 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -30,30 +30,39 @@ android {
             )
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+
+    java {
+        toolchain {
+            languageVersion.set(
+                JavaLanguageVersion.of(
+                    libs.versions.javaToolchainVersion.get().toInt()
+                )
+            )
+        }
     }
-    kotlinOptions {
-        jvmTarget = "1.8"
+
+    kotlin {
+        jvmToolchain {
+            languageVersion.set(
+                JavaLanguageVersion.of(
+                    libs.versions.javaToolchainVersion.get().toInt()
+                )
+            )
+        }
     }
 }
 
 dependencies {
+    implementation(project(":databases:api"))
+    implementation(project(":databases:room"))
+    implementation(project(":databases:realm"))
 
-    implementation("io.realm.kotlin:library-base:1.11.0")
-    val roomVersion = "2.6.1"
+    implementation(libs.core.ktx)
+    implementation(libs.appcompat)
+    implementation(libs.material)
+    implementation(libs.constraintlayout)
+    implementation(platform(libs.coroutinesBom))
+    implementation(libs.lifecycle.viewmodel.ktx)
 
-    implementation("androidx.room:room-runtime:$roomVersion")
-    annotationProcessor("androidx.room:room-compiler:$roomVersion")
-
-    ksp("androidx.room:room-compiler:$roomVersion")
-
-    implementation("androidx.core:core-ktx:1.12.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.11.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    testImplementation(libs.junit)
 }

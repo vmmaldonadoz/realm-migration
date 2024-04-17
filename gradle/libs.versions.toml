@@ -1,0 +1,44 @@
+[versions]
+androidCompileSdkVersion = "34"
+androidSdkVersion = "34"
+androidMinSdkVersion = "21"
+appcompatVersion = "1.6.1"
+constraintlayoutVersion = "2.1.4"
+coreKtxVersion = "1.12.0"
+javaToolchainVersion = "17"
+gradleVersion = "8.7"
+gradleKotlinVersion = "1.9.23"
+junitVersion = "4.13.2"
+kotlinVersion = "1.9.23"
+kotlinCoroutinesVersion = "1.8.0"
+kspVersion = "1.9.23-1.0.19"
+agpVersion = "8.3.2"
+lifecycleViewmodelKtxVersion = "2.7.0"
+materialVersion = "1.11.0"
+realmVersion = "10.18.0"
+roomVersion = "2.6.1"
+
+[libraries]
+appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompatVersion" }
+constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayoutVersion" }
+core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtxVersion" }
+junit = { module = "junit:junit", version.ref = "junitVersion" }
+lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtxVersion" }
+material = { module = "com.google.android.material:material", version.ref = "materialVersion" }
+realm = { module = "io.realm:realm-gradle-plugin", version.ref = "realmVersion" }
+roomRuntime = { module = "androidx.room:room-runtime", version.ref = "roomVersion" }
+roomCoroutines = { module = "androidx.room:room-ktx", version.ref = "roomVersion" }
+roomCompiler = { module = "androidx.room:room-compiler", version.ref = "roomVersion" }
+
+coroutinesBom = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-bom", version.ref = "kotlinCoroutinesVersion" }
+coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core" }
+coroutinesJvm = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm" }
+coroutinesAndroid = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android" }
+
+[bundles]
+
+[plugins]
+androidApplication = { id = "com.android.application", version.ref = "agpVersion" }
+androidLibrary = { id = "com.android.library", version.ref = "agpVersion" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "kspVersion" }
+realm = { id = "realm-android", version.ref = "realmVersion" }
