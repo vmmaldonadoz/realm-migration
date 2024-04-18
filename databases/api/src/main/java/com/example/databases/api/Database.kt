@@ -5,7 +5,7 @@ import com.example.databases.api.model.Metric
 
 interface Database {
 
-    suspend fun createDatabase(context: Context)
+    suspend fun createDatabase(context: Context, databaseName: String)
 
     suspend fun storeData(data: List<Metric>): Boolean
 

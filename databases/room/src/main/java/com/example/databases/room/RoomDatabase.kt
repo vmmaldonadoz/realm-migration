@@ -11,11 +11,11 @@ class RoomDatabase : Database {
 
     private var database: MetricsDatabase? = null
     private var dao: MetricsDao? = null
-    override suspend fun createDatabase(context: Context) {
+    override suspend fun createDatabase(context: Context, databaseName: String) {
         database = Room.databaseBuilder(
             context,
             MetricsDatabase::class.java,
-            "metrics-database",
+            databaseName,
         ).build()
         dao = database!!.metricsDao()
     }
@@ -62,6 +62,7 @@ class RoomDatabase : Database {
 
     override suspend fun removeDatabaseFromMemory() {
         dao = null
+        database?.close()
         database = null
     }
 }
